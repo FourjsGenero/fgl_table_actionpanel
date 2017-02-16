@@ -1,0 +1,50 @@
+LAYOUT
+VBOX
+GROUP (TEXT="Populated Table")
+VBOX
+TABLE (STYLE="actionpanel", HEIGHT=5)
+{
+[f01    |f02     |f03|f04]
+} 
+END # TABLE
+END #VBOX
+END #GROUP
+GROUP (TEXT="Empty Table")
+VBOX
+TABLE  (STYLE="actionpanel", HEIGHT=5)
+{
+[g01     |g02    |g03|g04]
+}
+END #TABLE
+END #VBOX
+END #GROUP
+GROUP (TEXT="No Panel")
+VBOX
+TABLE (HEIGHT=5)
+{
+[h01     |h02    |h03|h04]
+}
+END #TABLE
+END #VBOX
+END #GROUP
+END #VBOX
+END #LAYOUT
+ATTRIBUTES
+f01 = formonly.field11, TITLE="Field 1";
+f02 = formonly.field12, TITLE="Field 2";
+g01 = formonly.field21, TITLE="Field 1";
+g02 = formonly.field22, TITLE="Field 2";
+h01 = formonly.field31, TITLE="Field 1";
+h02 = formonly.field32, TITLE="Field 2";
+IMAGE f03 = formonly.update1, ACTION=update, TITLE="Update";
+IMAGE f04 = formonly.delete1, ACTION=delete, TITLE="Delete";
+IMAGE g03 = formonly.update2, ACTION=update, TITLE="Update";
+IMAGE g04 = formonly.delete2, ACTION=delete, TITLE="Delete";
+IMAGE h03 = formonly.update3, ACTION=update, TITLE="Update";
+IMAGE h04 = formonly.delete3, ACTION=delete, TITLE="Delete";
+
+INSTRUCTIONS
+SCREEN RECORD scr1(field11, field12, update1, delete1)
+SCREEN RECORD scr2(field21, field22, update2, delete2)
+SCREEN RECORD scr3(field31, field32, update3, delete3)
+
