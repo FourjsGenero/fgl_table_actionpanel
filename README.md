@@ -14,4 +14,4 @@ The buttons added will include actions for find and append, and six table naviga
 
 In the DISPLAY ARRAY or INPUT ARRAY add the line "CALL table_actionpanel.set_currentrow_text()"  at the end of the BEFORE DISPLAY, BEFORE INPUT, BEFORE ROW so that the label containing the row X of Y text is updated.
 
-Take this as a starting point and feel free to modify the actions that are catered for in the TABLE action panel and modify appearane as you see fit.
+Take this as a starting point and feel free to modify the actions that are catered for in the TABLE action panel and modify appearance as you see fit.
