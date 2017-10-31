@@ -1,12 +1,12 @@
 # fgl_table_actionpanel
 Library to add an "actionpanel" beneath a table containing actions with scope on that table 
 
-![Genero FGL Table Action Panel (GDC)](https://github.com/FourjsGenero/fgl_table_actionpanel/raw/master/docs/screen-001.png)
+![fgl_table_actionpanel example screenshot](https://user-images.githubusercontent.com/13615993/32205891-c86c1ca6-be56-11e7-943a-ce70591c52e0.png)
 
-Usage
+## Usage
 IMPORT FGL table_actionpanel
 
-Call the function table_actionpanel.append_actionpanel_to_table() inside a ui.Form.setDefaultInitializer and for every table in the form it will add a GRID containing a number of BUTTONS and a LABEL (the "action panel" of the title) if the following conditions are met ...
+Call the function table_actionpanel.append_actionpanel_to_table() inside a ui.Form.setDefaultInitializer, and for every table in the form it will then add a GRID containing a number of BUTTONS and a LABEL (the "action panel" of the title) if the following conditions are met ...
 * The TABLE has as its parent a VBOX container
 * The TABLE's STYLE attribute contains the value actionpanel
 
