@@ -20,7 +20,7 @@ DEFINE i INTEGER
 
         -- Use a value of actionpanel inside tag attribute to determine if add
         -- actionpanel
-        IF table_node.getAttribute("style") MATCHES "*actionpanel*" THEN
+        IF table_node.getAttribute("tag") MATCHES "*actionpanel*" THEN
             #OK
         ELSE
             CONTINUE FOR
