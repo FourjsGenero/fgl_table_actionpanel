@@ -5,7 +5,7 @@
   <ActionDefault name="insert" text="Insert" acceleratorName="F3" contextMenu="no"/>
   
    <!-- - modified image values -->
-  <ActionDefault name="append" text="Append" acceleratorName="Control-F3" contextMenu="no" image="fa-plus"/>
+  <ActionDefault name="append" text="Append" acceleratorName="Control-F3" contextMenu="yes" image="fa-plus"/>
    <!-- - modified image values -->
    
   <ActionDefault name="update" text="Update" />
