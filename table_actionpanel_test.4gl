@@ -38,7 +38,7 @@ DEFINE i INTEGER
     DIALOG ATTRIBUTES(UNBUFFERED)
         DISPLAY ARRAY arr1 TO scr1.* 
             BEFORE ROW
-                CALL table_actionpanel.set_currentrow_text()
+                CALL table_actionpanel.set_currentrow_text("scr1")
             ON APPEND
                 INPUT arr1[arr_curr()].* FROM scr1[scr_line()].* ATTRIBUTES(WITHOUT DEFAULTS=FALSE);
                 LET arr1[arr_curr()].update1 = UPDATE_IMAGE
@@ -46,11 +46,12 @@ DEFINE i INTEGER
             ON UPDATE
                 INPUT arr1[arr_curr()].* FROM scr1[scr_line()].* ATTRIBUTES(WITHOUT DEFAULTS=TRUE);
             ON DELETE
+                CALL table_actionpanel.after_delete_text("scr1")
         END DISPLAY
         
         DISPLAY ARRAY arr2 TO scr2.*
             BEFORE ROW
-                CALL table_actionpanel.set_currentrow_text()
+                CALL table_actionpanel.set_currentrow_text("scr2")
             ON APPEND
                 INPUT arr2[arr_curr()].* FROM scr2[scr_line()].* ATTRIBUTES(WITHOUT DEFAULTS=FALSE);
                 LET arr2[arr_curr()].update2 = UPDATE_IMAGE
@@ -58,6 +59,7 @@ DEFINE i INTEGER
             ON UPDATE
                 INPUT arr2[arr_curr()].* FROM scr2[scr_line()].* ATTRIBUTES(WITHOUT DEFAULTS=TRUE);
             ON DELETE
+                CALL table_actionpanel.after_delete_text("scr2")
         END DISPLAY
 
          DISPLAY ARRAY arr3 TO scr3.*
@@ -68,10 +70,12 @@ DEFINE i INTEGER
             ON UPDATE
                 INPUT arr3[arr_curr()].* FROM scr3[scr_line()].* ATTRIBUTES(WITHOUT DEFAULTS=TRUE);
             ON DELETE
+                
         END DISPLAY
         
         BEFORE DIALOG  
-            CALL table_actionpanel.set_currentrow_text()
+            CALL table_actionpanel.set_currentrow_text("scr1")
+            CALL table_actionpanel.set_currentrow_text("scr2")
             
         ON ACTION close
             EXIT DIALOG

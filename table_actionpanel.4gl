@@ -60,7 +60,8 @@ END FUNCTION
 
 
 
-FUNCTION set_currentrow_text()
+FUNCTION set_currentrow_text(tab_name)
+DEFINE tab_name STRING
 DEFINE scope STRING
 DEFINE current_row, row_count INTEGER
 
@@ -79,17 +80,58 @@ DEFINE nl om.NodeList
     LET nl = root_node.selectByTagName("Table")
     FOR i = 1 TO nl.getLength()
         LET table_node = nl.item(i)
-        LET current_row = table_node.getAttribute("currentRow") + 1
-        LET row_count = table_node.getAttribute("size")
-
-        -- If you have arrays greater than 99999 in size, you may have to amend <<<<<
-        LET value =  IIF(row_count>0,SFMT("%1 of %2", current_row USING "<<<<<", row_count USING "<<<<<"),"No rows") 
-
         LET scope = table_node.getAttribute("tabName")
-        LET lbl_name = SFMT("lbl_%1", scope)
-        LET label_node = f.findNode("Label", lbl_name)
-        IF label_node IS NOT NULL THEN
-            CALL label_node.setAttribute("text",value)
+        IF scope = tab_name THEN
+            LET current_row = table_node.getAttribute("currentRow") + 1
+            LET row_count = table_node.getAttribute("size")
+
+            -- If you have arrays greater than 99999 in size, you may have to amend <<<<<
+            LET value =  IIF(row_count>0,SFMT("%1 of %2", current_row USING "<<<<<", row_count USING "<<<<<"),"No rows") 
+
+            LET lbl_name = SFMT("lbl_%1", scope)
+            LET label_node = f.findNode("Label", lbl_name)
+            IF label_node IS NOT NULL THEN
+                CALL label_node.setAttribute("text",value)
+            END IF
+        END IF
+    END FOR
+END FUNCTION
+
+
+
+-- This is a special case of the set_currentrow_text
+-- It needs to be called by ON DELETE.  
+-- If there is a row, the set_currentrow_text in BEFORE ROW will override this text
+-- if there is no row ie deleted last row, then this text will remain in place
+-- this is because there is no trigger called after ON DELETE is called on the last row
+FUNCTION after_delete_text(tab_name)
+DEFINE tab_name STRING
+DEFINE scope STRING
+DEFINE lbl_name STRING
+DEFINE value STRING
+DEFINE label_node, root_node, table_node om.DomNode
+
+DEFINE w ui.Window
+DEFINE f ui.Form
+DEFINE i INTEGER
+DEFINE nl om.NodeList
+
+    LET w = ui.Window.getCurrent()
+    LET f = w.getForm()
+    LET root_node = f.getNode()
+    LET nl = root_node.selectByTagName("Table")
+    FOR i = 1 TO nl.getLength()
+        LET table_node = nl.item(i)
+        LET scope = table_node.getAttribute("tabName")
+        IF scope = tab_name THEN
+            LET value = "No rows" 
+
+            LET scope = table_node.getAttribute("tabName")
+            LET lbl_name = SFMT("lbl_%1", scope)
+            LET label_node = f.findNode("Label", lbl_name)
+            IF label_node IS NOT NULL THEN
+                CALL label_node.setAttribute("text",value)
+            END IF
         END IF
     END FOR
 END FUNCTION
