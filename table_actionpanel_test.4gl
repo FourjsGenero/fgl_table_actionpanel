@@ -47,6 +47,7 @@ DEFINE i INTEGER
                 INPUT arr1[arr_curr()].* FROM scr1[scr_line()].* ATTRIBUTES(WITHOUT DEFAULTS=TRUE);
             ON DELETE
                 CALL table_actionpanel.after_delete_text("scr1")
+
         END DISPLAY
         
         DISPLAY ARRAY arr2 TO scr2.*
