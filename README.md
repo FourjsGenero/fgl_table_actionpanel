@@ -8,7 +8,7 @@ IMPORT FGL table_actionpanel
 
 Call the function table_actionpanel.append_actionpanel_to_table() inside a ui.Form.setDefaultInitializer, and for every table in the form it will then add a GRID containing a number of BUTTONS and a LABEL (the "action panel" of the title) if the following conditions are met ...
 * The TABLE has as its parent a VBOX container
-* The TABLE's STYLE attribute contains the value actionpanel
+* The TABLE's TAG attribute contains the value actionpanel
 
 The buttons added will include actions for find and append, and six table navigation actions.  Also added will be a LABEL which is used to populate with row X of Y messages
 
